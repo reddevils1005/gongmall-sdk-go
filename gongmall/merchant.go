@@ -194,9 +194,9 @@ type TransQueryV2Resp struct {
 		Name                      string  `json:"name"`
 		Amount                    float64 `json:"amount"`
 		CurrentRealWage           float64 `json:"currentRealWage"`
-		taxCalculationType        int     `json:"taxCalculationType"`        //算税方式（是否为打包价（1:标准，2:打包））
-		currentTaxAmountOfPerson  float64 `json:"currentTaxAmountOfPerson"`  //当次个人承担税费金额（算税方式为打包时个人税费）
-		currentTaxAmountOfCompany float64 `json:"currentTaxAmountOfCompany"` //当次企业承担税费金额 （算税方式为打包时企业税费）
+		TaxCalculationType        int     `json:"taxCalculationType"`        //算税方式（是否为打包价（1:标准，2:打包））
+		CurrentTaxAmountOfPerson  float64 `json:"currentTaxAmountOfPerson"`  //当次个人承担税费金额（算税方式为打包时个人税费）
+		CurrentTaxAmountOfCompany float64 `json:"currentTaxAmountOfCompany"` //当次企业承担税费金额 （算税方式为打包时企业税费）
 		CurrentTax                float64 `json:"currentTax"`
 		CurrentManageFee          float64 `json:"currentManageFee"`
 		CurrentAddTax             float64 `json:"currentAddTax"`
