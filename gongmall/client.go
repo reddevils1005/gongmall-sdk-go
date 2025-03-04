@@ -31,6 +31,7 @@ const (
 	addBankAccountURL                = "/api/merchant/employee/addBankAccount"
 	doSinglePaymentURL               = "/api/merchant/doSinglePayment"
 	transQueryURL                    = "/api/merchant/transQuery"
+	transQueryV2URL                  = "/api/withdraw/v2/getWithdrawResult"
 	queryLimitURL                    = "/api/merchant/queryLimit"
 	receiptQueryURL                  = "/api/merchant/receiptQuery"
 	queryBalanceURL                  = "/api/merchant/queryBalance"

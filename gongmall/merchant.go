@@ -178,3 +178,57 @@ func (s *MerchantService) ReceiptQuery(req ReceiptQueryReq) (*ReceiptQueryResp, 
 
 	return &resp, nil
 }
+
+type TransQueryV2Req struct {
+	RequestID string `json:"requestId,omitempty"`
+}
+
+type TransQueryV2Resp struct {
+	response.CommonResp
+	Data struct {
+		RequestID                 string  `json:"requestId"`
+		InnerTradeNo              string  `json:"innerTradeNo"`
+		Status                    int     `json:"status"`
+		FailReason                string  `json:"failReason"`
+		Mobile                    string  `json:"mobile"`
+		Name                      string  `json:"name"`
+		Amount                    float64 `json:"amount"`
+		CurrentRealWage           float64 `json:"currentRealWage"`
+		taxCalculationType        int     `json:"taxCalculationType"`        //算税方式（是否为打包价（1:标准，2:打包））
+		currentTaxAmountOfPerson  float64 `json:"currentTaxAmountOfPerson"`  //当次个人承担税费金额（算税方式为打包时个人税费）
+		currentTaxAmountOfCompany float64 `json:"currentTaxAmountOfCompany"` //当次企业承担税费金额 （算税方式为打包时企业税费）
+		CurrentTax                float64 `json:"currentTax"`
+		CurrentManageFee          float64 `json:"currentManageFee"`
+		CurrentAddTax             float64 `json:"currentAddTax"`
+		CurrentAddValueTax        float64 `json:"currentAddValueTax"`
+		Identity                  string  `json:"identity"`
+		BankName                  string  `json:"bankName"`
+		BankAccount               string  `json:"bankAccount"`
+		DateTime                  string  `json:"dateTime"` // 申请时间(yyyyMMddHHmmss)
+		CreateTime                string  `json:"createTime"`
+		PayTime                   string  `json:"payTime"` // 实际付款时间(yyyyMMddHHmmss)
+		Remark                    string  `json:"remark"`
+	}
+}
+
+// transQuery 查询单笔提现结果
+// https://opendoc.gongmall.com/merchant/shi-shi-ti-xian/cha-xun-ti-xian-jie-guo-merchant.html
+func (s *MerchantService) TransQueryV2(req TransQueryV2Req) (*TransQueryV2Resp, error) {
+	buf, _ := json.Marshal(struct {
+		request.CommonReq
+		TransQueryV2Req
+	}{
+		s.client.getCommonReq(),
+		req,
+	})
+
+	respBytes, err := s.client.httpPostForm(transQueryV2URL, buf)
+	if err != nil {
+		return nil, err
+	}
+
+	resp := TransQueryV2Resp{}
+	_ = json.Unmarshal(respBytes, &resp)
+
+	return &resp, nil
+}
