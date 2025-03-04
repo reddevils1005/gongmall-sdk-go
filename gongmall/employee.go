@@ -3,8 +3,8 @@ package gongmall
 import (
 	"encoding/json"
 
-	"github.com/chenjiacheng/gongmall-sdk-go/request"
-	"github.com/chenjiacheng/gongmall-sdk-go/response"
+	"github.com/reddevils1005/gongmall-sdk-go/request"
+	"github.com/reddevils1005/gongmall-sdk-go/response"
 )
 
 type EmployeeService service
