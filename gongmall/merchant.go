@@ -56,11 +56,11 @@ func (s *MerchantService) DoSinglePayment(req DoSinglePaymentReq) (*DoSinglePaym
 	return &resp, nil
 }
 
-type transQueryReq struct {
+type TransQueryReq struct {
 	RequestID string `json:"requestId,omitempty"`
 }
 
-type transQueryResp struct {
+type TransQueryResp struct {
 	response.CommonResp
 	Data struct {
 		RequestID          string  `json:"requestId"`
@@ -87,10 +87,10 @@ type transQueryResp struct {
 
 // transQuery 查询单笔提现结果
 // https://opendoc.gongmall.com/merchant/shi-shi-ti-xian/cha-xun-ti-xian-jie-guo-merchant.html
-func (s *MerchantService) TransQuery(req transQueryReq) (*transQueryResp, error) {
+func (s *MerchantService) TransQuery(req TransQueryReq) (*TransQueryResp, error) {
 	buf, _ := json.Marshal(struct {
 		request.CommonReq
-		transQueryReq
+		TransQueryReq
 	}{
 		s.client.getCommonReq(),
 		req,
@@ -101,7 +101,7 @@ func (s *MerchantService) TransQuery(req transQueryReq) (*transQueryResp, error)
 		return nil, err
 	}
 
-	resp := transQueryResp{}
+	resp := TransQueryResp{}
 	_ = json.Unmarshal(respBytes, &resp)
 
 	return &resp, nil
