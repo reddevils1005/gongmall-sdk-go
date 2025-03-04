@@ -87,7 +87,7 @@ type transQueryResp struct {
 
 // transQuery 查询单笔提现结果
 // https://opendoc.gongmall.com/merchant/shi-shi-ti-xian/cha-xun-ti-xian-jie-guo-merchant.html
-func (s *MerchantService) transQuery(req transQueryReq) (*transQueryResp, error) {
+func (s *MerchantService) TransQuery(req transQueryReq) (*transQueryResp, error) {
 	buf, _ := json.Marshal(struct {
 		request.CommonReq
 		transQueryReq
@@ -123,7 +123,7 @@ type QueryLimitResp struct {
 
 // queryLimit 查询月度可发放限额
 // https://opendoc.gongmall.com/merchant/shi-shi-ti-xian/cha-xun-ti-xian-jie-guo-merchant.html
-func (s *MerchantService) queryLimit(req QueryLimitReq) (*QueryLimitResp, error) {
+func (s *MerchantService) QueryLimit(req QueryLimitReq) (*QueryLimitResp, error) {
 	buf, _ := json.Marshal(struct {
 		request.CommonReq
 		QueryLimitReq
